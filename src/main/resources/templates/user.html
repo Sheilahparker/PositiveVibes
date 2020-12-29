@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>Log in</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="/custom.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/custom.js"></script>
+    <title id="title">User Feed</title>
+
+	<div th:replace="/fragments/headlinks :: head-styles"></div>
+
+</head>
+
+<body>
+
+	<div th:replace="fragments/navbar"></div>
+	<div class="container">
+		<h2>Profile for <span th:text="${user.firstName}"></span>
+			<span th:text="${user.lastName}"></span> - <span style="color: #00aced">@<span
+					th:text="${user.username}"></span></span></h2>
+		<h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
+		<h3>Vibes</h3>	
+	    <div class="list-group" th:each="vibe:${vibeList}">
+	        <div class="list-group-item list-group-item-action">
+	            <div class="d-flex w-100 justify-content-between">
+	                <h5>@<span th:text="${vibe.user.username}"></span>
+						<small th:text="${vibe.date}"></small></h5>
+	            </div>
+	    		<p class="mb-1" th:utext="${vibe.message}"></p>
+	        </div>
+	    </div>
+		    <div th:if="${not #lists.isEmpty(vibeList)}">
+	  
+		</div>
+		<div th:if="${#lists.isEmpty(vibeList)}">
+		    <h3>No Recent Vibes</h3>
+		    </div>
+</div>
+</body>
+</html>

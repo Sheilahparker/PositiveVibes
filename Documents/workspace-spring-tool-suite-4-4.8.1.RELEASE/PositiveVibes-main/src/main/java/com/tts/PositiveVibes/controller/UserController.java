@@ -15,6 +15,9 @@ import com.tts.PositiveVibes.model.User;
 import com.tts.PositiveVibes.model.VibeDisplay;
 import com.tts.PositiveVibes.service.UserService;
 
+  ///////////////////////
+ // This is a comment //
+///////////////////////
 
 @Controller
 public class UserController {
